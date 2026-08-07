@@ -1,0 +1,16 @@
+*~
+*.elc
+auto-save-list
+.cache
+custom.el
+eln-cache
+elpa
+eshell
+history
+sercer
+url
+org-persist
+recentf
+transient/history.el
+projects
+projectile-bookmarks.eld
