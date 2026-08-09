@@ -23,6 +23,7 @@
     :init
     (leaf hydra :ensure t)
     (leaf blackout :ensure t)
+    (leaf el-get :ensure t)
 
     :config
     (leaf-keywords-init))
@@ -38,6 +39,7 @@
     :ensure t
     :custom ((imenu-list-size . 30)
              (imenu-list-position . 'left)))
+
 
   
   (leaf cus-edit
@@ -269,14 +271,14 @@
   :doc "Simple major mode for editing conf/ini/properties files"
   :tag "builtin"
   :added "2026-08-08"
-  :mode "\\.ini\\'"
+  ;:mode "\\.ini\\'"
   )
 
 (leaf sql
   :doc "specialized comint.el for SQL interpreters"
   :tag "builtin"
   :added "2026-08-08"
-  :mode "\\.sql\\'"
+;  :mode "\\.sql\\'"
   )
 
 
@@ -474,7 +476,9 @@
     :added "2026-07-11"
     :emacs>= 28.1
     :ensure t
-    :after compat)
+    :after compat
+    :custom ( (projectile-track-known-projects-automatically . t))
+    )
 
   (leaf consult-projectile
     :doc "Consult integration for projectile"
@@ -519,8 +523,6 @@
     :ensure t
     :after company)
 
-
-
   (leaf consult-company
     :doc "Consult frontend for company"
     :req "emacs-27.1" "company-0.9" "consult-0.9"
@@ -531,6 +533,7 @@
     :ensure t
     :after company consult
     ) 
+
 
   )
 
@@ -602,6 +605,13 @@
 ;  :after aio polymode org markdown-mode shell-maker mcp
 )
 
+(leaf elauncher
+  ;; :doc "Program launcher for Windows."
+  ;; :tag "tools" 
+  :el-get "hodumi/elauncher"
+  ;:emacs>= 30.1			       
+  )
+
 
 (leaf my-func
   :config
@@ -640,6 +650,8 @@
   (defun open-init-file ()
     (interactive)
     (find-file "~/.emacs.d/init.el"))
+
+
 
 
 
