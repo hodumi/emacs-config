@@ -31,11 +31,14 @@
 
 (leaf *leaf-inits
   :config
+
+ (leaf leaf-convert :ensure t)
   
   (leaf leaf-tree
     :ensure t
     :custom ((imenu-list-size . 30)
              (imenu-list-position . 'left)))
+
   
   (leaf cus-edit
     :doc "tools for customizing Emacs and Lisp packages"
@@ -141,6 +144,12 @@
     (global-auto-revert-mode 1)
     )
 
+
+  (leaf recentf
+    :doc "keep track of recently opened files"
+    :tag "builtin"
+    :added "2026-08-08")
+
   (leaf *emacsclient
     :after server
     :config
@@ -150,8 +159,22 @@
     )
 
   (leaf *theme
-    ;:after generic-x
+   ;:after generic-x
     :config
+
+    (leaf smart-mode-line
+      :doc "A color coded smart mode-line"
+      :req "emacs-24.3" "rich-minority-0.1.1"
+      :tag "themes" "faces" "mode-line" "emacs>=24.3"
+      :url "https://github.com/Malabarba/smart-mode-line"
+      :added "2026-08-08"
+      :emacs>= 24.3
+      :ensure t
+      :after rich-minority)
+
+
+
+
     (add-to-list 'custom-theme-load-path "~/.emacs.d/theme/")
     (load-theme 'hodumi t)
     (initialize-hodumi-theme)
@@ -168,8 +191,8 @@
 
     ;; font
     (set-face-attribute 'default nil 
-		    :family "Utatane"
-		    :height 120)
+			:family "Utatane"
+		    :height 110)
 
 
     )
@@ -242,6 +265,19 @@
 (leaf hexl-mode
   :hook my-set-key-atkey-map)
 
+(leaf conf-mode
+  :doc "Simple major mode for editing conf/ini/properties files"
+  :tag "builtin"
+  :added "2026-08-08"
+  :mode "\\.ini\\'"
+  )
+
+(leaf sql
+  :doc "specialized comint.el for SQL interpreters"
+  :tag "builtin"
+  :added "2026-08-08"
+  :mode "\\.sql\\'"
+  )
 
 
 (leaf mwim
@@ -273,34 +309,6 @@
   :bind (("C-o" . skk-mode))
   )
 
-(leaf diminish
-  :doc "Diminished modes are minor modes with no modeline display"
-  :req "emacs-24.3"
-  :tag "codeprose" "minor" "diminish" "extensions" "emacs>=24.3"
-  :url "https://github.com/myrjola/diminish.el"
-  :added "2026-03-22"
-  :emacs>= 24.3
-  :ensure t
-  
-  :config
-  ;; [[http://qiita.com/tadsan/items/c859c5c04724cbda75fc][指定したマイナーモードを表示しない(diminish篇)]]からコピー
-  (defmacro safe-diminish (file mode &optional new-name)
-    "https://github.com/larstvei/dot-emacs/blob/master/init.org"
-    `(with-eval-after-load ,file
-       (diminish ,mode ,new-name)))
-
-
-  (safe-diminish "abbrev" 'abbrev-mode)
-  (safe-diminish "auto-complete" 'auto-complete-mode)
-  ;; (safe-diminish "flycheck" 'flycheck-mode)
-  (safe-diminish "google-this" 'google-this-mode)
-  (safe-diminish "helm-mode" 'helm-mode)
-  (safe-diminish "rainbow-mode" 'rainbow-mode)
-  (safe-diminish "undo-tree" 'undo-tree-mode)
-  (safe-diminish "whitespace" 'global-whitespace-mode)
-  (safe-diminish "yasnippet" 'yas-minor-mode)
-  (safe-diminish "editorconfig" 'editorconfig-mode)
-  )
 
 
 (leaf bm
@@ -315,6 +323,16 @@
 	 )
   )
 
+(leaf save-visited-files
+  :doc "Save opened files across sessions"
+  :url "https://github.com/nflath/save-visited-files"
+  :added "2026-08-08"
+  :ensure t
+  :custom ( (save-visited-files-ignore-tramp-files . t)
+	    )
+  :config
+  (turn-on-save-visited-files-mode)
+  )
 
 (leaf *git
   :config
@@ -342,6 +360,37 @@
 
 (leaf *minibuffer
   :config
+
+  (leaf diminish
+    :doc "Diminished modes are minor modes with no modeline display"
+    :req "emacs-24.3"
+    :tag "codeprose" "minor" "diminish" "extensions" "emacs>=24.3"
+    :url "https://github.com/myrjola/diminish.el"
+    :added "2026-03-22"
+    :emacs>= 24.3
+    :ensure t
+    
+    :config
+    ;; [[http://qiita.com/tadsan/items/c859c5c04724cbda75fc][指定したマイナーモードを表示しない(diminish篇)]]からコピー
+    (defmacro safe-diminish (file mode &optional new-name)
+      "https://github.com/larstvei/dot-emacs/blob/master/init.org"
+      `(with-eval-after-load ,file
+	 (diminish ,mode ,new-name)))
+
+
+    (safe-diminish "abbrev" 'abbrev-mode)
+    (safe-diminish "auto-complete" 'auto-complete-mode)
+    ;; (safe-diminish "flycheck" 'flycheck-mode)
+    (safe-diminish "google-this" 'google-this-mode)
+    (safe-diminish "helm-mode" 'helm-mode)
+    (safe-diminish "rainbow-mode" 'rainbow-mode)
+    (safe-diminish "undo-tree" 'undo-tree-mode)
+    (safe-diminish "whitespace" 'global-whitespace-mode)
+    (safe-diminish "yasnippet" 'yas-minor-mode)
+    (safe-diminish "editorconfig" 'editorconfig-mode)
+    (safe-diminish "company" 'company-mode)
+    )
+
 
   (leaf vertico
     :doc "VERTical Interactive COmpletion"
@@ -447,7 +496,7 @@
     :added "2026-08-02"
     :emacs>= 26.1
     :ensure t
-    :global-minor-mode t
+    ;:global-minor-mode t
     :after posframe
     :custom  ((completion-ignore-case . t)
 	      (company-idle-delay . 0)
@@ -456,9 +505,8 @@
 	      (company-transformers . (company-sort-by-occurrence company-sort-by-backend-importance))
 	      )    
     :config
-    (global-company-mode)
     )
-
+  (global-company-mode) ;何故か:configに置くと動かないので、ここに置く
 
 
   (leaf company-statistics
@@ -484,6 +532,19 @@
     :after company consult
     ) 
 
+  )
+
+
+(leaf yascroll
+  :doc "Yet Another Scroll Bar Mode"
+  :req "emacs-26.1"
+  :tag "convenience" "emacs>=26.1"
+  :url "https://github.com/emacsorphanage/yascroll"
+  :added "2026-08-08"
+  :emacs>= 26.1
+  :ensure t
+  :config
+  (global-yascroll-bar-mode 1)
   )
 
 (leaf editorconfig
