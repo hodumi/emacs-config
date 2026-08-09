@@ -318,16 +318,16 @@
 
 (leaf *git
   :config
+
   (leaf magit
-    :doc "A Git porcelain inside Emacs"
-    :req "emacs-28.1" "compat-30.1" "cond-let-0.2" "llama-1.0" "magit-section-4.5" "seq-2.24" "transient-0.12" "with-editor-3.4"
+    :doc "A Git porcelain inside Emacs."
+    :req "emacs-28.1" "compat-31.0" "cond-let-1.1" "llama-1.0" "magit-section-4.7" "seq-2.24" "transient-0.13" "with-editor-3.5"
     :tag "vc" "tools" "git" "emacs>=28.1"
     :url "https://github.com/magit/magit"
-    :added "2026-03-22"
+    :added "2026-08-08"
     :emacs>= 28.1
     :ensure t
-       
-    )
+    :after compat cond-let llama magit-section with-editor)
 
   (leaf git-gutter
     :doc "Port of Sublime Text plugin GitGutter"
