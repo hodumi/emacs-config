@@ -576,8 +576,8 @@
   :added "2026-06-07"
   :emacs>= 24.3
   :ensure t
-  :mode ((("\\.php\\"  "\\.ctp\\"). web-mode)
-	 (("\\.js\\"). web-mode)
+  :mode ((("\\.php\\'"  "\\.ctp\\'"). web-mode)
+	 (("\\.js\\'"). web-mode)
 	 )
   )
 
@@ -611,6 +611,18 @@
   :el-get "hodumi/elauncher"
   ;:emacs>= 30.1			       
   )
+
+;; (leaf open-junk-file
+;;   :doc "Open a junk (memo) file to try-and-error"
+;;   :tag "tools" "convenience"
+;;   :url "http://www.emacswiki.org/cgi-bin/wiki/download/open-junk-file.el"
+;;   :added "2026-08-10"
+;;   :ensure t
+;;   :custom ( (open-junk-file-format . "~/.emacs.d/junk/%Y/%m/%Y-%m-%d-%H%M%S.txt"))
+;;   :bind ( ("C-x j" . open-junk-file))
+;;   )
+
+
 
 
 (leaf my-func
