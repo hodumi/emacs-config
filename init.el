@@ -605,12 +605,6 @@
 ;  :after aio polymode org markdown-mode shell-maker mcp
 )
 
-(leaf elauncher
-  ;; :doc "Program launcher for Windows."
-  ;; :tag "tools" 
-  :el-get "hodumi/elauncher"
-  ;:emacs>= 30.1			       
-  )
 
 ;; (leaf open-junk-file
 ;;   :doc "Open a junk (memo) file to try-and-error"
@@ -627,6 +621,10 @@
 
 (leaf my-func
   :config
+  (load "~/.emacs.d/my-package/elauncher.el")
+;  (load "
+
+
   (defun fix-separate (str lst)
     (cond
      ((string= "" str)
