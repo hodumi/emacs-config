@@ -621,7 +621,14 @@
 
 (leaf my-func
   :config
+
+  ;; elauncher
   (load "~/.emacs.d/my-package/elauncher.el")
+
+  (elauncher:defexplorer elauncher:open-default-directory default-directory) ; default-directoryの表示
+  (elauncher:defexplorer elauncher:open-home-directory "~" ) ; HOMEの表示
+
+
 ;  (load "
 
 
