@@ -629,6 +629,9 @@
   (elauncher:defexplorer elauncher:open-home-directory "~" ) ; HOMEの表示
 
 
+  ;; tcpclient
+  (load "~/.emacs.d/my-package/tcpclient.el")
+
 ;  (load "
 
 
