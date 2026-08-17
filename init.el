@@ -1,7 +1,6 @@
 ;;; -*- mode: emacs-lisp, leaf-tree -*-
 
 
-
 (eval-and-compile
   (when (or load-file-name byte-compile-current-file)
     (setq user-emacs-directory
@@ -416,9 +415,13 @@
     :ensure t
     :package t
     :global-minor-mode t
+    :config
+    (defalias 'consult-line-thing-at-point 'consult-line)
+    (consult-customize consult-line-thing-at-point :initial (thing-at-point 'symbol))
+
     :bind
     (
-     ("C-s" . consult-line)
+     ("C-s" . consult-line-thing-at-point)
      ("C-x C-b" . switch-to-buffer)))
 
   (leaf orderless
@@ -476,6 +479,7 @@
     :added "2026-07-11"
     :emacs>= 28.1
     :ensure t
+    :require t
     :after compat
     :custom ( (projectile-track-known-projects-automatically . t))
     )
@@ -618,22 +622,29 @@
 
 
 
-
 (leaf my-func
   :config
 
-  ;; elauncher
-  (load "~/.emacs.d/my-package/elauncher.el")
+  (leaf elauncher
+    :doc "Program launcher for Windows."
+    :tag "tools" 
+    :el-get "hodumi/elauncher"
+    :require t
+    :config
+    (elauncher:defexplorer elauncher:open-default-directory default-directory) ; default-directoryの表示
+    (elauncher:defexplorer elauncher:open-home-directory "~" ) ; HOMEの表示
+    (elauncher:defexplorer elauncher:open-root-directory (projectile-project-root) ) ; project rootの表示
 
-  (elauncher:defexplorer elauncher:open-default-directory default-directory) ; default-directoryの表示
-  (elauncher:defexplorer elauncher:open-home-directory "~" ) ; HOMEの表示
+    ;; bindは、@をプレフィクスとしているため後述
+    )
+
 
 
   ;; tcpclient
   (load "~/.emacs.d/my-package/tcpclient.el")
 
-;  (load "
 
+;  (load "
 
   (defun fix-separate (str lst)
     (cond
@@ -786,8 +797,17 @@
 
      ;; @ 3で、window横分割
      ("@ 3" . split-window-right)
-     
+
+     ;; @ e cで、現在のフォルダを表示
+     ("@ e c" . elauncher:open-default-directory)     
+
+     ;; @ e rで、現在のプロジェクトのルートフォルダを表示
+     ("@ e r" . elauncher:open-root-directory)     
+
+
      )
+
+    ;;
     )
   )
 
