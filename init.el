@@ -658,13 +658,15 @@
     ;; bindは、@をプレフィクスとしているため後述
     )
 
- 
+  (leaf emacs-tcpclient
+    :doc "TCPclient on Emacs."
+    :tag "tools" 
+    :el-get "hodumi/emacs-tcpclient"
+    :require t
+    :config
 
-  ;; tcpclient
-  (load "~/.emacs.d/my-package/tcpclient.el")
+    )
 
-
-;  (load "
 
   (defun fix-separate (str lst)
     (cond
