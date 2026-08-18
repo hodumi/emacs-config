@@ -17,3 +17,4 @@ projectile-bookmarks.eld
 el-get/
 emacs-visited-files
 server/
+tramp
