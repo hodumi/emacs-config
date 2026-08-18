@@ -73,6 +73,9 @@
     ;; SHELL設定
     (setenv "LANG" "ja_JP.UTF-8")
     (setenv "LC_ALL" "ja_JP.UTF-8")
+
+    ;; yes/noをy/n
+    (defalias 'yes-or-no-p 'y-or-n-p)
     )
 
   (leaf *bakcup
@@ -289,10 +292,23 @@
   :ensure t
   :bind
   (
-   ("C-a" . mwim-beginning-of-code-or-line) ; aaa
+   ("C-a" . mwim-beginning-of-code-or-line)
    ("C-e" . mwim-end-of-code-or-line)
    )
   )
+
+(leaf puni
+  :doc "Parentheses Universalistic"
+  :req "emacs-26.1"
+  :tag "tools" "lisp" "convenience" "emacs>=26.1"
+  :url "https://github.com/AmaiKinono/puni"
+  :added "2026-08-18"
+  :emacs>= 26.1
+  :ensure t
+  :bind (("C-." . puni-expand-region))
+  )
+
+
 
 
 (leaf ddskk
@@ -415,7 +431,7 @@
     :ensure t
     :package t
     :global-minor-mode t
-    :config
+    :init
     (defalias 'consult-line-thing-at-point 'consult-line)
     (consult-customize consult-line-thing-at-point :initial (thing-at-point 'symbol))
 
@@ -565,12 +581,10 @@
 (leaf *common-lisp
   :config
   ;; use roswell
-  (load (expand-file-name "C:/Users/USER/.roswell/helper.el"))
+  ;(load (expand-file-name "C:/Users/USER/.roswell/helper.el"))
 
 
   )
-
-
 
 (leaf web-mode
   :doc "Major mode for editing web templates"
@@ -638,7 +652,7 @@
     ;; bindは、@をプレフィクスとしているため後述
     )
 
-
+ 
 
   ;; tcpclient
   (load "~/.emacs.d/my-package/tcpclient.el")
@@ -804,10 +818,23 @@
      ;; @ e rで、現在のプロジェクトのルートフォルダを表示
      ("@ e r" . elauncher:open-root-directory)     
 
+     ;; @ (で、範囲を()でくくる
+     ("@ w (" . puni-wrap-round)
+
+     ;; @ [で、範囲を[]でくくる
+     ("@ w [" . puni-wrap-square)
+
+     ;; @ {で、範囲を{}でくくる
+     ("@ w {" . puni-wrap-curly)
+
+     ;; @ <で、範囲を<>でくくる
+     ("@ w <" . puni-wrap-angle)
+
+     ;; @ DEL (で括弧(),[],{},<>を削除する
+     ("@ w DEL" . puni-splice)
+
 
      )
-
-    ;;
     )
   )
 
