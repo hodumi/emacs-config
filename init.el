@@ -340,6 +340,12 @@
 	 )
   )
 
+
+(leaf beacon
+  :ensure t
+  :global-minor-mode t)
+
+
 (leaf save-visited-files
   :doc "Save opened files across sessions"
   :url "https://github.com/nflath/save-visited-files"

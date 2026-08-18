@@ -204,7 +204,7 @@ Semantic, and Ansi-Color faces are included.")
 				      ,blue-1 ,plum-1 ,blue-0 ,alum-1])
    '(magit-diff-arguments (quote ("--ignore-all-space" "--no-ext-diff" "--stat")))
    '(magit-log-arguments  '("--graph" "--color" "--decorate" "-n256"))
-   '(beacon-color "black") ;; beacon
+   `(beacon-color ,orange-1) ;; beacon
 
    ;; parent
    '(show-paren-style 'mixed)
