@@ -305,10 +305,13 @@
   :added "2026-08-18"
   :emacs>= 26.1
   :ensure t
-  :bind (("C-." . puni-expand-region))
+  :bind (("C-M-@" . puni-expand-region))
   )
 
-
+(leaf cua-mode
+  :config
+  (cua-selection-mode t)
+  )
 
 
 (leaf ddskk
@@ -563,6 +566,17 @@
 
   )
 
+(leaf visual-regexp
+  :doc "A regexp/replace command for Emacs with interactive visual feedback"
+  :req "cl-lib-0.2"
+  :tag "feedback" "visual" "replace" "regexp"
+  :url "https://github.com/benma/visual-regexp.el/"
+  :added "2026-08-19"
+  :ensure t
+  :bind
+     ( ("M-%" . vr/query-replace) )
+     )
+
 
 (leaf yascroll
   :doc "Yet Another Scroll Bar Mode"
@@ -655,6 +669,9 @@
     (elauncher:defexplorer elauncher:open-home-directory "~" ) ; HOMEの表示
     (elauncher:defexplorer elauncher:open-root-directory (projectile-project-root) ) ; project rootの表示
 
+
+
+
     ;; bindは、@をプレフィクスとしているため後述
     )
 
@@ -667,7 +684,7 @@
 
     )
 
-
+  ;; fix-separate
   (defun fix-separate (str lst)
     (cond
      ((string= "" str)
@@ -688,8 +705,6 @@
     (dolist (lst list)
       (print lst)))
 
-
-
   (defun repeat-list-item (cnt lst)
     (cond
      ((= cnt 1)
@@ -699,6 +714,56 @@
       (append
        lst
        (repeat-list-item (1- cnt) lst)))))
+
+
+  (defun show-file-name ()
+    "Show the full path file name in the minibuffer."
+    (interactive)
+    (kill-new (buffer-file-name))
+    (message (buffer-file-name)))
+
+  (defalias 'pwd 'show-file-name)
+
+  ;; ewwで、現在のファイルを開く
+  (defun eww-open-current-file ()
+    "eww open current buffer-file"
+    (interactive)
+    (eww-open-file (buffer-file-name)))
+
+
+  ;; 現在のbuffer名を取得する。
+  (defun show-buffer-name ()
+    "Show the buffer file name in the minibuffer."
+    (interactive)
+    (kill-new (buffer-name))
+    (message (buffer-name)))
+
+
+
+  (defun length-zenhan (str)
+    (interactive "MText: ")
+    (let ((len 0))
+      (dolist (s (string-to-list str))
+	(if (< s #x7F)
+	    (incf len)
+	  (incf len 2))
+	)
+      (princ (format "%d (0x%X)" len len))
+      ))
+
+
+
+  (defun checkdigit (code modulus weight)
+    (let ((i (+ (length code) 1))
+	  (buf 0))
+      (dolist (s (string-to-list code))
+	(incf buf (if (= (mod i 2) 0)
+		      (* (- s 48) weight)
+		    (- s 48)))
+	(decf i 1))
+      (- modulus (mod buf modulus))))
+
+
 
   (defun open-init-file ()
     (interactive)
@@ -755,7 +820,6 @@
 
      ;; C-!にeshell起動を設定
      ("C-!" . eshell)
-
      
      ;; C-s -> helm-swoop
      ;;(bind-key (kbd "C-s") 'helm-swoop)
