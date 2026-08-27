@@ -766,6 +766,7 @@
 
 
   (defun open-init-file ()
+    "Open ~/.emacs.d/init.el."
     (interactive)
     (find-file "~/.emacs.d/init.el"))
 
@@ -854,7 +855,7 @@
      ("@ @" . (lambda () (interactive) (insert "@")))
 
      ;; @ gで行ジャンプ       
-     ("@ G" . goto-line) ; consult-goto-lineは巨大ファイルだと負荷が大きいためこっちを使う
+     ("@ g" . goto-line) ; consult-goto-lineは巨大ファイルだと負荷が大きいためこっちを使う
 
      ;; @ bで、buffer-listを開く
      ("@ b" . switch-to-buffer)
