@@ -575,8 +575,19 @@
   :ensure t
   :bind
      ( ("M-%" . vr/query-replace) )
+  :config
+  (setq vr/engine 'pcre2el)
+
      )
 
+(leaf visual-regexp-steroids
+  :doc "Extends visual-regexp to support other regexp engines"
+  :req "visual-regexp-1.1"
+  :tag "feedback" "visual" "python" "replace" "regexp" "foreign" "external"
+  :url "https://github.com/benma/visual-regexp-steroids.el/"
+  :added "2026-08-28"
+  :ensure t
+  :after visual-regexp)
 
 (leaf yascroll
   :doc "Yet Another Scroll Bar Mode"
