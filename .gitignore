@@ -18,3 +18,4 @@ el-get/
 emacs-visited-files
 server/
 tramp
+local-config.el

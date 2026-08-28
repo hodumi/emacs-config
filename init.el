@@ -305,7 +305,7 @@
   :added "2026-08-18"
   :emacs>= 26.1
   :ensure t
-  :bind (("C-M-@" . puni-expand-region))
+  :bind (("C-." . puni-expand-region))
   )
 
 (leaf cua-mode
@@ -680,7 +680,7 @@
     (elauncher:defexplorer elauncher:open-home-directory "~" ) ; HOMEの表示
     (elauncher:defexplorer elauncher:open-root-directory (projectile-project-root) ) ; project rootの表示
 
-
+    
 
 
     ;; bindは、@をプレフィクスとしているため後述
@@ -922,6 +922,7 @@
     )
   )
 
-
+; ローカル設定ファイルを読み込み
+(require 'local-config "~/.emacs.d/local-config.el" t)
 
 (provide 'init)
