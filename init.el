@@ -440,14 +440,14 @@
     :ensure t
     :package t
     :global-minor-mode t
-    :init
-    (defalias 'consult-line-thing-at-point 'consult-line)
-    (consult-customize consult-line-thing-at-point :initial (thing-at-point 'symbol))
-
     :bind
     (
-     ("C-s" . consult-line-thing-at-point)
-     ("C-x C-b" . switch-to-buffer)))
+     ("C-s" . consult-line)
+     ("C-x C-b" . switch-to-buffer))
+
+    :config
+    (consult-customize consult-line :initial (thing-at-point 'symbol))
+    )
 
   (leaf orderless
     :tag "completion"
