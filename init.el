@@ -83,9 +83,12 @@
     (
      (make-backup-files . t)
      (create-lockfiles . nil)
-     
-;;     (backup-directory-alist . (cons (cons "\\.*$" (expand-file-name "~/.emacs.d/backup"))
-;;				     backup-directory-alist))
+     (auto-save-defaul . nil)
+     (backup-directory-alist . `((".*" . "~/.emacs.d/backups")))
+
+;     (backup-directory-alist . (cons (cons "\\.*$" (expand-file-name "~/.emacs.d/backup"))
+;				     backup-directory-alist))
+
      )
     )
 
