@@ -439,7 +439,6 @@
     :tag "completion"
     :ensure t
     :package t
-    :global-minor-mode t
     :bind
     (
      ("C-s" . consult-line)
@@ -452,7 +451,6 @@
   (leaf orderless
     :tag "completion"
     :ensure t
-    :global-minor-mode t
     :custom
     `((completion-styles . '(orderless))
       (orderless-matching-styles
