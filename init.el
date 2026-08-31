@@ -632,6 +632,15 @@
   )
 
 
+(leaf autoinsert
+  :doc "automatic mode-dependent insertion of text into new files"
+  :tag "builtin"
+  :added "2026-08-31"
+  :hook ((find-file-hooks . auto-insert))
+  :config
+  (require 'autoinsert)
+  )
+
 
 (leaf copilot
   :doc "An Emacs plugin for GitHub Copilot"
