@@ -699,6 +699,12 @@
 
     )
 
+  (defun open-junk-file ()
+    (interactive)
+    (find-file (format-time-string "~/.emacs.d/junk/%Y/%m/%Y-%m-%d-%H%M%S.txt")))
+
+
+
 
   ;; delete word
   (defun delete-word (arg)
@@ -936,10 +942,14 @@ With argument, do this that many times."
      ;; @ DEL (で括弧(),[],{},<>を削除する
      ("@ w DEL" . puni-splice)
 
+     ;; @ jで、open-junk-file
+     ("@ j" . open-junk-file)
 
      )
     )
   )
+
+
 
 ; ローカル設定ファイルを読み込み
 (require 'local-config "~/.emacs.d/local-config.el" t)
