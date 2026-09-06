@@ -702,8 +702,12 @@
     )
 
   (defun open-junk-file ()
+    "一時ファイル作成
+rubikitch/open-junk-fileが何故か動かないので移植"
     (interactive)
-    (find-file (format-time-string "~/.emacs.d/junk/%Y/%m/%Y-%m-%d-%H%M%S.txt")))
+    (let* ((file (format-time-string "~/.emacs.d/junk/%Y/%m/%Y-%m-%d-%H%M%S.txt")))
+      (make-directory (file-name-directory file) t)
+      (find-file-other-window (read-string "Junk Code (Enter extension): " (format-time-string "~/.emacs.d/junk/%Y/%m/%Y-%m-%d-%H%M%S.txt")))))
 
 
 
