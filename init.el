@@ -157,10 +157,12 @@
     :tag "builtin"
     :added "2026-08-08")
 
-  (leaf *emacsclient
-    :after server
+  (leaf server
+    :doc "Lisp code for GNU Emacs running as server process"
+    :tag "builtin"
+    :added "2026-09-02"
+    :require t
     :config
-    ;(require 'server)
     (unless (server-running-p)
       (server-start))
     )
@@ -439,7 +441,7 @@
     :bind
     (
      ("C-s" . consult-line)
-     ("C-x C-b" . switch-to-buffer))
+     ("C-x C-b" . consult-buffer))
 
     :config
     (consult-customize consult-line :initial (thing-at-point 'symbol))
@@ -888,7 +890,7 @@ With argument, do this that many times."
      ("@ g" . goto-line) ; consult-goto-lineは巨大ファイルだと負荷が大きいためこっちを使う
 
      ;; @ bで、buffer-listを開く
-     ("@ b" . switch-to-buffer)
+     ("@ b" . consult-buffer)
 
      ;; @ oで、別ウィンドウに移動
      ("@ o" . other-window)
