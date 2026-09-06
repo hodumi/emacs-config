@@ -19,3 +19,4 @@ emacs-visited-files
 server/
 tramp
 local-config.el
+/junk/
