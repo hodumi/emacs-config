@@ -288,6 +288,18 @@
 ;  :mode "\\.sql\\'"
   )
 
+(leaf cobol-mode
+  :doc "Mode for editing COBOL code"
+  :req "cl-lib-0.5"
+  :tag "languages"
+  :url "https://elpa.gnu.org/packages/cobol-mode.html"
+  :added "2026-09-10"
+  :ensure t
+
+  :mode ((("\\.cbl\\'"). cobol-mode)
+	 )
+  )
+
 
 (leaf mwim
   :doc "Switch between the beginning/end of line or code"
@@ -561,6 +573,14 @@
     ) 
 
 
+  )
+
+(leaf ibuffer
+  :doc "operate on buffers like dired"
+  :tag "builtin"
+  :added "2026-09-07"
+
+					;:bindは、@ jのため後述
   )
 
 (leaf visual-regexp
@@ -950,6 +970,9 @@ With argument, do this that many times."
 
      ;; @ jで、open-junk-file
      ("@ j" . open-junk-file)
+
+     ;; @ iで、ibuffer
+     ("@ i" . ibuffer)
 
      )
     )
