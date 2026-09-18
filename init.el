@@ -647,6 +647,17 @@
 	 )
   )
 
+(leaf powershell
+  :doc "Mode for editing PowerShell scripts"
+  :req "emacs-24.5"
+  :tag "languages" "powershell" "emacs>=24.5"
+  :url "https://github.com/jschaf/powershell.el"
+  :added "2026-09-18"
+  :emacs>= 24.5
+  :ensure t
+  :mode ((("\\.ps1\\'") . powershell-mode))
+  )
+
 
 (leaf autoinsert
   :doc "automatic mode-dependent insertion of text into new files"
