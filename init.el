@@ -669,6 +669,17 @@
   :mode ((("\\.txt\\'" "\\.md\\'") . gfm-mode))
   )
 
+(leaf csv-mode
+  :doc "Major mode for editing comma/char separated values"
+  :req "emacs-27.1" "cl-lib-0.5"
+  :tag "convenience" "emacs>=27.1"
+  :url "https://elpa.gnu.org/packages/csv-mode.html"
+  :added "2026-09-28"
+  :emacs>= 27.1
+  :ensure t
+  :mode ((("\\.csv\\'") . csv-mode))
+  )
+
 
 (leaf autoinsert
   :doc "automatic mode-dependent insertion of text into new files"
