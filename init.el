@@ -658,6 +658,17 @@
   :mode ((("\\.ps1\\'") . powershell-mode))
   )
 
+(leaf markdown-mode
+  :doc "Major mode for Markdown-formatted text."
+  :req "emacs-28.1"
+  :tag "itex" "github flavored markdown" "markdown" "emacs>=28.1"
+  :url "https://jblevins.org/projects/markdown-mode/"
+  :added "2026-09-28"
+  :emacs>= 28.1
+  :ensure t
+  :mode ((("\\.txt\\'" "\\.md\\'") . gfm-mode))
+  )
+
 
 (leaf autoinsert
   :doc "automatic mode-dependent insertion of text into new files"
