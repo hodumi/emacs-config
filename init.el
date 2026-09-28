@@ -639,10 +639,7 @@
 
 (leaf *common-lisp
   :config
-  ;; use roswell
-  ;(load (expand-file-name "C:/Users/USER/.roswell/helper.el"))
-
-
+  ;; local-config.elに記載
   )
 
 (leaf web-mode
