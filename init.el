@@ -1001,8 +1001,9 @@ With argument, do this that many times."
      ;; @ DEL (で括弧(),[],{},<>を削除する
      ("@ w DEL" . puni-splice)
 
-     ;; @ jで、open-junk-file
+     ;; @ j/C-x jで、open-junk-file
      ("@ j" . open-junk-file)
+     ("C-x j" . open-junk-file)
 
      ;; @ iで、ibuffer
      ("@ i" . ibuffer)
