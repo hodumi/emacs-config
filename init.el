@@ -300,6 +300,17 @@
 	 )
   )
 
+(leaf comment-dwim-2
+  :doc "An all-in-one comment command to rule them all"
+  :req "emacs-28.1"
+  :tag "tools" "convenience" "emacs>=28.1"
+  :url "https://github.com/remyferre/comment-dwim-2"
+  :added "2026-09-20"
+  :emacs>= 28.1
+  :ensure t
+  :bind (("M-;" . comment-dwim-2))
+  )
+
 
 (leaf mwim
   :doc "Switch between the beginning/end of line or code"
@@ -628,10 +639,7 @@
 
 (leaf *common-lisp
   :config
-  ;; use roswell
-  ;(load (expand-file-name "C:/Users/USER/.roswell/helper.el"))
-
-
+  ;; local-config.elに記載
   )
 
 (leaf web-mode
