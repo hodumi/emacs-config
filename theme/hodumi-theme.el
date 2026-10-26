@@ -195,6 +195,10 @@ Semantic, and Ansi-Color faces are included.")
 
 ;; web-mode
    `(web-mode-current-element-highlight-face ((,class (:foreground ,alum-2  ))))
+
+;; vertico
+   `(vertico-current ((,class (:background ,alum-5.5  ))))
+
    )
 
 ;;; ===  variables =========
