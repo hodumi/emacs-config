@@ -73,6 +73,7 @@
     ;; SHELL設定
     (setenv "LANG" "ja_JP.UTF-8")
     (setenv "LC_ALL" "ja_JP.UTF-8")
+    (defvar explicit-shell-file-name "C:/Program Files/Git/bin/bash.exe")
 
     ;; yes/noをy/n
     (defalias 'yes-or-no-p 'y-or-n-p)
@@ -474,7 +475,7 @@
     :tag "completion"
     :ensure t
     :custom
-    `((completion-styles . '(orderless))
+    `((completion-styles . '(orderless basic))
       (orderless-matching-styles
        . '(
 					; orderless-prefixes
@@ -956,6 +957,12 @@ With argument, do this that many times."
     (
      ;; @ @
      ("@ @" . (lambda () (interactive) (insert "@")))
+
+     ;; @ f
+     ("@ f" . find-file)
+
+     ;; @ d
+     ("@ d" . dired)
 
      ;; @ gで行ジャンプ       
      ("@ g" . goto-line) ; consult-goto-lineは巨大ファイルだと負荷が大きいためこっちを使う
