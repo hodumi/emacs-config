@@ -876,8 +876,24 @@ With argument, do this that many times."
 
 
 
+  (leaf gulp
+    :config
+    (defun gulp-watch-command (&optional directory)
+      "Run command 'gulp watch' on directory(argument)"
+      (let ((default-directory (or
+				directory
+				(locate-dominating-file default-directory "gulpfile.js"))))
+	(start-process-shell-command "gulp-watch" "*gulp-watch*" "gulp watch")
+	(switch-to-buffer "*gulp-watch*")
+					;    (set-buffer-process-coding-system 'sjis 'sjis) 
+	))
 
-
+    (defun gulp-watch ()
+      "Run command 'gulp watch' on root directory"
+      (interactive)
+      (gulp-watch-command)
+      )
+    )
   )
 
 (leaf *key-bind
