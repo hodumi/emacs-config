@@ -903,6 +903,9 @@ With argument, do this that many times."
   ;; C-h
   (keyboard-translate ?\C-h ?\C-?)
 
+  ;; find-file系統をfind-file-at-point系統に変更
+  (ffap-bindings)
+
   (leaf *=global
     :bind
     (
@@ -947,8 +950,10 @@ With argument, do this that many times."
      ;; C-s -> helm-swoop
      ;;(bind-key (kbd "C-s") 'helm-swoop)
 
-     ;; find-fileをfind-file-at-pointに変更
-     ("C-x C-f" . find-file-at-point)
+     ;; find-file-other-windowを使いやすい位置に移動
+     ("C-x C-S-f" . find-file-other-window)
+
+
      )
     
     :bind*
