@@ -462,6 +462,7 @@
     :tag "completion"
     :ensure t
     :package t
+    :custom ((consult-line-start-from-top . t))
     :bind
     (
      ("C-s" . consult-line)
