@@ -947,6 +947,8 @@ With argument, do this that many times."
      ;; C-s -> helm-swoop
      ;;(bind-key (kbd "C-s") 'helm-swoop)
 
+     ;; find-fileをfind-file-at-pointに変更
+     ("C-x C-f" . find-file-at-point)
      )
     
     :bind*
