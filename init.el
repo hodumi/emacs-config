@@ -652,6 +652,7 @@
   :added "2026-06-07"
   :emacs>= 24.3
   :ensure t
+  :custom ((web-mode-enable-auto-indentation . nil))
   :mode ((("\\.php\\'"  "\\.ctp\\'"). web-mode)
 	 (("\\.js\\'"). web-mode)
 	 )
